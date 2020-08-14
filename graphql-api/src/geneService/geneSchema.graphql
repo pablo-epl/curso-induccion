@@ -1,0 +1,95 @@
+type Gene {
+	geneInfo: GeneInfo
+	products: [Products]
+}
+
+type GeneInfo {
+	id: String
+	name: String
+	leftEndPosition: Int
+	rightEndPosition: Int
+	strand: String
+	sequence: String
+	gcContent: Float
+	centisomePosition: Float
+	note: String
+	type: String
+	synonyms: [String]
+	terms: [Terms]
+	externalCrossReferences: [ExternalCrossReferences]
+	evidenceReferences: [EvidenceReferences]
+}
+
+type Terms {
+	multifun: [[String]]
+	geneOntology: GeneOntology
+}
+
+type GeneOntology {
+	cellularComponent: [CellularComponent]
+	molecularFunction: [MolecularFunction]
+	biologicalProcess: [BiologicalProcess]
+}
+
+type CellularComponent {
+	term_id: String
+	name: String
+	gene_ids: [String]
+}
+
+type MolecularFunction {
+	term_id: String
+	name: String
+	gene_ids: [String]
+}
+
+type BiologicalProcess {
+	term_id: String
+	name: String
+	gene_ids: [String]
+}
+
+type ExternalCrossReferences {
+	id: String
+	name: String
+	url: String
+}
+
+type EvidenceReferences {
+	evidenceName: String
+	evidenceCode: String
+	evidenceType: String
+	referenceId: String
+	referenceURL: String
+	referenceCitation: String
+}
+
+type Products {
+	regulatorId: String
+	name: String
+	type: String
+	sequence: String
+	note: String
+	molecularWeight: Float
+	isoelectricPoint: Float
+	cellularLocation: String
+	anticodon: String
+	synonyms: [String]
+	motifs: [Motifs]
+	externalCrossReferences: [ExternalCrossReferences]
+	evidenceReferences: [EvidenceReferences]
+}
+
+type Motifs {
+	leftEndPosition: Int
+	rightEndPosition: Int
+	sequence: String
+	description: String
+	type: String
+	note: String
+}
+
+type Query {
+	getAllGenes(limit: Int, page: Int): [Gene]
+	getGenesBy(id: String, name: String): [Gene]
+}
